@@ -10,4 +10,4 @@ spec:
   - protocol: TCP
     port: 80 #서비스가 사용할 포트
     targetPort: 80 #서비스가 포워드할 컨테이너 포트
-    nodePort: 30000 #서비스가 파드를 노출시킬 포트
+    nodePort: 31000 #서비스가 파드를 노출시킬 포트
