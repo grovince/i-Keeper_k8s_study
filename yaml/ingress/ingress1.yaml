@@ -9,7 +9,7 @@ metadata:
 spec:
   rules:
   - host: www.solju.kr #인그레스는 www.solju.kr 도메인 이름을 서비스에 매핑함
-    http:
+  - http:
       paths:
       - pathType: Prefix
         path: "/"
