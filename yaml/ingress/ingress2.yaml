@@ -11,13 +11,13 @@ spec:
   - host: www.solju.kr #인그레스는 www.solju.kr 도메인 이름을 서비스에 매핑함
     http:
       paths:
-      - pathType: Prefix
-        path: /
-        backend:
-          service:
-            name: nginx-svc
-            port: 
-              number: 80 #모든 요청은 nginx-svc 서비스의 포트 80으로 전달 
+      # - pathType: Prefix
+      #   path: /
+      #   backend:
+      #     service:
+      #       name: nginx-svc
+      #       port: 
+      #         number: 80 #모든 요청은 nginx-svc 서비스의 포트 80으로 전달 
       - pathType: Prefix
         path: /v1
         backend:

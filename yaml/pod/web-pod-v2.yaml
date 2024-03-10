@@ -7,6 +7,6 @@ metadata:
 spec:
   containers:
   - name: web-pod-v2
-    image: grovince/test:v2
+    image: grovince/test:v2-2
     ports:
     - containerPort: 80
