@@ -17,4 +17,4 @@ spec:
           service:
             name: nginx-svc
             port: 
-              number: 80 #모든 요청은 nginx-svc 서비스의 포트 8080으로 전달 
+              number: 8080 #모든 요청은 nginx-svc 서비스의 포트 8080으로 전달 
