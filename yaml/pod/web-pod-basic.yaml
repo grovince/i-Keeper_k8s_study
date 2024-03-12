@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: web-pod-v2
+  name: web-pod-basic
   labels:
-    app: web-pod-v2
+    app: web-pod-basic
 spec:
   containers:
-  - name: web-pod-v2
-    image: grovince/test:v2-4
+  - name: web-pod-basic
+    image: grovince/test:v2-3
     imagePullPolicy: Always
     ports:
     - containerPort: 80

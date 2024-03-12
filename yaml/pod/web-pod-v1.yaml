@@ -7,6 +7,7 @@ metadata:
 spec:
   containers:
   - name: web-pod-v1
-    image: grovince/test:v2-1
+    image: grovince/test:v2-3
+    imagePullPolicy: Always
     ports:
     - containerPort: 80
