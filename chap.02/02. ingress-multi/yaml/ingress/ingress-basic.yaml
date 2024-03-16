@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: myingress-basic
+  labels:
+    name: myingress-basic
+  annotations: 
+    kubernetes.io/ingress.global-static-ip-name: "k8s-ip"
+spec:
+  rules:
+  - host: www.solju.kr #인그레스는 www.solju.kr 도메인 이름을 서비스에 매핑함
+  - http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: nginx-svc
+            port: 
+              number: 8080 #모든 요청은 nginx-svc 서비스의 포트 8080으로 전달 

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-svc-v2
+spec:
+  type: NodePort
+  selector:
+    app: web-pod-v2 
+  ports:
+  - protocol: TCP
+    port: 80 #서비스가 사용할 포트
+    targetPort: 80 #서비스가 포워드할 컨테이너 포트
+    nodePort: 30003 #서비스가 파드를 노출시킬 포트
