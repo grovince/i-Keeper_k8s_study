@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div th:fragment="sidebar">
+ <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" th:href="@{/home}">
+        <div class="sidebar-brand-text mx-3">CI / CD</div>
+      </a>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0"><br/>
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+       BOARD
+      </div>
+
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" th:href="@{/board/list}">
+        <i class="fas fa-fw fa-table"></i>
+          <span>요청사항</span>
+        </a>
+      </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="http://193.123.252.185/owncloud">
+            <i class="fas fa-fw fa-table"></i>
+            <span>OwnCloud</span>
+        </a>
+    </li>
+    <div sec:authorize="isAuthenticated()">
+    <li class="nav-item" >
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Knowledge</span>
+        </a>
+        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="https://objectstorage.ap-seoul-1.oraclecloud.com/n/cnbkloa0ci62/b/ouu-bucekt/o/LPC%20%EB%A7%A4%EB%89%B4%EC%96%BC.pdf">Local Peering</a>
+                <a class="collapse-item" href="https://objectstorage.ap-seoul-1.oraclecloud.com/n/cnbkloa0ci62/b/ouu-bucekt/o/RPC%20%EB%A7%A4%EB%89%B4%EC%96%BC.pdf">Remote Peering</a>
+                <a class="collapse-item" href="https://objectstorage.ap-seoul-1.oraclecloud.com/n/cnbkloa0ci62/b/ouu-bucekt/o/Tomcat%20Apache%20%EC%97%B0%EB%8F%99%20%EB%A7%A4%EB%89%B4%EC%96%BC%20210119%20v2.pdf">Web WAS Connection</a>
+                <a class="collapse-item" href="https://objectstorage.ap-seoul-1.oraclecloud.com/n/cnbkloa0ci62/b/ouu-bucekt/o/SSL%20%EC%A0%81%EC%9A%A9%20%EB%A7%A4%EB%89%B4%EC%96%BC%20210119%20v2.pdf">SSL Certification</a>
+                <a class="collapse-item" href="https://objectstorage.ap-seoul-1.oraclecloud.com/n/cnbkloa0ci62/b/ouu-bucekt/o/%EB%A6%AC%EB%8B%A4%EC%9D%B4%EB%A0%89%EC%85%98%20%EB%A7%A4%EB%89%B4%EC%96%BC%20210121%20v1.pdf">Redirection</a>
+                <a class="collapse-item" href="https://objectstorage.ap-seoul-1.oraclecloud.com/n/cnbkloa0ci62/b/ouu-bucekt/o/%EC%84%B8%EC%85%98%ED%81%B4%EB%9F%AC%EC%8A%A4%ED%84%B0%EB%A7%81.pdf">Session Clustering</a>
+                <a class="collapse-item" href="https://objectstorage.ap-seoul-1.oraclecloud.com/n/cnbkloa0ci62/b/ouu-bucekt/o/Grafana%EB%A5%BC%20%ED%99%9C%EC%9A%A9%ED%95%9C%20OCI%20%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81%20%EA%B5%AC%EC%B6%95.pdf">Grafana</a>
+                <a class="collapse-item" href="https://objectstorage.ap-seoul-1.oraclecloud.com/n/cnbkloa0ci62/b/ouu-bucekt/o/OwnCloud%20%EB%A7%A4%EB%89%B4%EC%96%BC.pdf">OwnCloud</a>
+
+            </div>
+        </div>
+    </li>
+    </div>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+	 <div sec:authorize="isAuthenticated()">
+      <!-- Heading -->
+
+      <!-- Nav Item - Utilities Collapse Menu -->
+
+     </div>
+
+      <!-- Sidebar Toggler (Sidebar) -->
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+</div>
+</body>
+</html>

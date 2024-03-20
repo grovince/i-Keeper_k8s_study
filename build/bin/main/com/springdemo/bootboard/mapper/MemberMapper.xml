@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+		   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.springdemo.bootboard.mapper.MemberMapper">
+
+	<resultMap type="com.springdemo.bootboard.vo.MemberVO" id="memberMap">
+		<id column="user_name" property="userName" />
+		<result column="passwd" property="passwd" />
+		<result column="enabled" property="enabled" />
+		<result column="first_name" property="firstName" />
+		<result column="last_name" property="lastName" />
+		<result column="regdate" property="regdate" />
+	<collection property="roles" column="user_name" resultMap="roleMap" />
+	</resultMap>
+	<resultMap type="com.springdemo.bootboard.vo.MemberRoleVO" id="roleMap">
+		<result column="user_name" property="userName" />
+		<result column="role_name" property="roleName" />
+	</resultMap>
+	
+	<select id="selectMemberByEmail" parameterType="String" resultMap="memberMap">
+		SELECT m.user_name, m.passwd, m.enabled, m.first_name, m.last_name, m.regdate, r.role_name
+		FROM tbl_users m
+		LEFT OUTER JOIN tbl_users_roles r
+		ON m.user_name = r.user_name
+		WHERE m.user_name = #{ userName }
+	</select>
+	
+	<insert id="insertMember" parameterType="com.springdemo.bootboard.vo.MemberVO">
+		INSERT INTO tbl_users (user_name, passwd, first_name, last_name)
+		VALUES (#{ userName }, #{ passwd }, #{ firstName }, #{ lastName })
+	</insert>
+	<insert id="insertMemberRole" parameterType="com.springdemo.bootboard.vo.MemberRoleVO">
+		INSERT INTO tbl_users_roles (user_name, role_name)
+		VALUES (#{ userName }, #{ roleName })
+	</insert>
+
+</mapper>
+
+
+
+
+

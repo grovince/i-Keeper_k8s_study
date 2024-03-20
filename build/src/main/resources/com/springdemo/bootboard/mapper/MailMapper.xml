@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+		   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.springdemo.bootboard.mapper.MailMapper">
+
+	<select id="selectReceivedMailByUserName" parameterType="String" resultType="com.springdemo.bootboard.vo.MailVO">
+		SELECT mail_idx, sender, title, read_yn, mail_date
+		FROM tbl_mail 
+		WHERE deleted_yn = 'N' AND receiver = #{ userName }
+	</select>
+	
+	<select id="selectMailByMailIdx" parameterType="int" resultType="com.springdemo.bootboard.vo.MailVO">
+		SELECT title, sender, receiver, contents, mail_date
+		FROM tbl_mail WHERE deleted_yn = 'N' AND mail_idx = #{ mailIdx }
+	</select>
+	
+	<update id="deleteMailByMailIdx" parameterType="int">
+		UPDATE tbl_mail SET deleted_yn = 'Y' WHERE mail_idx = #{ mailIdx }
+	</update>
+	
+	<insert id="insertMailByUserName" parameterType="com.springdemo.bootboard.vo.MailVO">
+		INSERT INTO tbl_mail (title, contents, receiver, sender) 
+		VALUES (#{ title }, #{ contents }, #{ receiver }, #{ sender })
+	</insert>
+	
+</mapper>
+
+
+
+
+
