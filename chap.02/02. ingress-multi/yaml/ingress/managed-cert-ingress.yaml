@@ -1,11 +1,12 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: myingress
+  name: managed-cert-ingress
   labels:
-    name: myingress
+    name: managed-cert-ingress
   annotations: 
     kubernetes.io/ingress.global-static-ip-name: "k8s-ip"
+    networking.gke.io/managed-certificates: managed-cert #gcp에서만 하는 방법, Google 관리 SSL 인증서 사용법
 spec:
   rules:
   - host: www.solju.kr #인그레스는 www.solju.kr 도메인 이름을 서비스에 매핑함
