@@ -1,0 +1,13 @@
+FROM nginx:latest
+
+WORKDIR /usr/share/nginx/html
+
+RUN rm index.html
+
+COPY index.html .
+
+RUN find . -type f -exec chmod 644 {} \;
+
+RUN find . -type d -exec chmod 755 {} \;
+
+EXPOSE 80
