@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: deployment-nginx
+  name: deploy-nginx
   labels:
     app: nginx
 spec:
@@ -16,18 +16,19 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: grovince/test:rolling-update-v1
+        image: grovince/test:rollout-deploy-v1.1
+        imagePullPolicy: Always
 
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: deployment-svc
+  name: deploy-svc
 spec:
   selector:
     app: nginx
   ports:
-  - port: 8080
+  - port: 80
     targetPort: 80
   type: LoadBalancer
