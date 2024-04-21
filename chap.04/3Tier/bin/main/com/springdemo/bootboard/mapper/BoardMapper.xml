@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+		   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.springdemo.bootboard.mapper.BoardMapper">
+	
+	<resultMap type="com.springdemo.bootboard.vo.BoardVO" id="boardMap">
+		<id column="board_idx" property="boardIdx" />
+		<result column="title" property="title" />
+		<result column="contents" property="contents" />
+		<result column="hit_count" property="hitCount" />
+		<result column="created_datetime" property="createdDatetime" />
+		<result column="creator_id" property="creatorId" />
+		<result column="updated_datetime" property="updatedDatetime" />
+		<result column="updator_id" property="updatorId"/>
+		<result column="deleted_yn" property="deletedYn"/>
+	</resultMap>
+	
+	<sql id="searchCondition">
+		<trim suffix="AND">
+	    	<choose>
+	    		<when test="searchType == 'T'.toString()">
+	    			title LIKE '%'||#{searchKey}||'%'
+	    		</when>
+	    		<when test="searchType == 'C'.toString()">
+	    			contents LIKE '%'||#{searchKey}||'%'
+	    		</when>
+	    		<when test="searchType == 'TC'.toString()">
+	    			( title LIKE '%'||#{searchKey}||'%' OR contents LIKE '%'||#{searchKey}||'%' )
+	    		</when>
+	    		<when test="searchType == 'W'.toString()">
+	    			creator_id LIKE '%'||#{searchKey}||'%'
+	    		</when>
+	    	</choose>
+		</trim>
+	</sql>
+	
+	<insert id="insertBoard" useGeneratedKeys="true" keyColumn="board_idx" keyProperty="boardIdx">
+		INSERT INTO tbl_board (title, contents, creator_id, deleted_yn)
+		VALUES (#{ title }, #{ contents }, #{ creatorId }, 'N')
+	</insert>
+	
+	<select id="selectBoard" resultMap="boardMap" parameterType="hashmap" >
+			SELECT board_idx, title, created_datetime, creator_id, hit_count
+			FROM tbl_board
+			WHERE <include refid="searchCondition" /> deleted_yn = 'N'
+			ORDER BY board_idx DESC
+	</select>
+	
+	<select id="selectBoardWithPaging" resultMap="boardMap" parameterType="hashmap" >
+<!-- 		SELECT board_idx, title, created_datetime, creator_id, hit_count FROM (
+			SELECT rownum idx, board_idx, title, created_datetime, creator_id, hit_count
+			FROM tbl_board
+			WHERE <include refid="searchCondition" /> deleted_yn = 'N' AND
+			<![CDATA[ rownum < #{ end } ]]>
+			ORDER BY board_idx DESC
+		) WHERE idx >= #{ beginning } -->
+		<![CDATA[
+		SET @ROWNUM:=0;
+		SELECT @ROWNUM:=@ROWNUM+1 idx, board_idx, title, created_datetime, creator_id, hit_count
+		FROM tbl_board
+		WHERE deleted_yn = 'N'
+		ORDER BY board_idx DESC
+		LIMIT #{beginning}, #{end}
+		]]>
+	</select>
+	
+	<select id="selectBoardByBoardIdx" parameterType="int" resultMap="boardMap">
+		SELECT board_idx, title, contents, hit_count, created_datetime, creator_id, updated_datetime, updater_id
+		FROM tbl_board
+		WHERE board_idx = #{ boardIdx } AND deleted_yn = 'N'
+	</select>
+	
+	<update id="deleteBoard" parameterType="int">
+		UPDATE tbl_board SET deleted_yn = 'Y' 
+		WHERE board_idx = #{ boardIdx }
+	</update>
+	
+	<update id="updateBoard" parameterType="com.springdemo.bootboard.vo.BoardVO">
+		UPDATE tbl_board 
+		SET title = #{ title }, contents = #{ contents }, updated_datetime = now(), updater_id = #{ updaterId }
+		WHERE board_idx = #{ boardIdx } 
+	</update>
+
+	<update id="updateHitCount" parameterType="int">
+		UPDATE tbl_board SET hit_count = hit_count + 1
+		WHERE board_idx = #{ boardIdx }
+	</update>
+	
+	
+</mapper>
+
+
+
+
+

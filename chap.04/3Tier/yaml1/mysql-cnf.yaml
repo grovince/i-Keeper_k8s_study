@@ -1,0 +1,22 @@
+apiVersion: v1
+data: 
+  utf8.cnf: |
+      [client]
+      default-character-set = utf8
+      
+      [mysqld]
+      init_connect = SET collation_connection = utf8_general_ci
+      init_connect = SET NAMES utf8
+      character-set-server = utf8
+      collation-server = utf8_general_ci
+      skip-character-set-client-handshake
+      
+      [mysqldump]
+      default-character-set = utf8
+      
+      [mysql]
+      default-character-set = utf8
+kind: ConfigMap
+metadata: 
+  creationTimestamp: ~
+  name: mysql-cnf
