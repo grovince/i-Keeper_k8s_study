@@ -7,6 +7,6 @@ metadata:
 spec:
   containers:
   - name: nginx-test
-    image: 사용자ID/레파지토리이름:버전
+    image: grovince/test:v1
     ports:
     - containerPort: 80
