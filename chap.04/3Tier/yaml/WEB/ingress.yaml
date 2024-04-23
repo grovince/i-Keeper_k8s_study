@@ -15,6 +15,6 @@ spec:
         path: "/"
         backend:
           service:
-            name: myweb
+            name: myweb-svc
             port: 
               number: 80

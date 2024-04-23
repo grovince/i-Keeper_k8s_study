@@ -1,7 +1,7 @@
 apiVersion: v1
 data:
   dbname: Ym9vdF9ib2FyZA==
-  rootpass: dGVzdA==
+  rootpass: dGVzdDEyMw==
   username: dGVzdA==
   userpass: dGVzdDEyMw==
 kind: Secret

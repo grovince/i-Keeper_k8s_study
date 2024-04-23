@@ -16,7 +16,7 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
         - name: mysql
-          image: mysql # grovince/rapa_db:v1
+          image: mysql:5.7
           args:
             - "--ignore-db-dir=lost+found"
           ports:
@@ -51,10 +51,15 @@ spec:
               mountPath: /var/lib/mysql
             - name: conf
               mountPath: /etc/mysql/conf.d
+            - name: init-script
+              mountPath: /docker-entrypoint-initdb.d
       volumes:
         - name: conf
           configMap:
             name: mysql-cnf
+        - name: init-script
+          configMap:
+            name: mysql-init-script
   volumeClaimTemplates: 
     - metadata:
         name: data
