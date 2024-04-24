@@ -8,7 +8,6 @@ data:
     default-character-set = utf8
     
     [mysqld]
-    skip-grant-tables
     init_connect = SET collation_connection = utf8_general_ci
     init_connect = SET NAMES utf8
     character-set-server = utf8
