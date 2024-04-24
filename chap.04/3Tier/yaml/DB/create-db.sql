@@ -7,6 +7,12 @@ CREATE USER 'test'@'%' IDENTIFIED BY 'test123';
 -- 'boot_board' 데이터베이스에 대한 모든 권한 부여
 GRANT ALL PRIVILEGES ON boot_board.* TO 'test'@'%';
 
+-- 'tbl_users' 테이블에 대한 SELECT, INSERT, DELETE 권한 부여
+GRANT SELECT, INSERT, DELETE ON tbl_users TO 'test'@'%';
+
+-- 'tbl_users_roles' 테이블에 대한 SELECT, INSERT, DELETE 권한 부여
+GRANT SELECT, INSERT, DELETE ON tbl_users_roles TO 'test'@'%';
+
 -- 데이터베이스 사용
 USE boot_board;
 
@@ -27,8 +33,3 @@ CREATE TABLE tbl_users_roles (
     FOREIGN KEY (user_id) REFERENCES tbl_users(user_id)
 );
 
--- 'tbl_users' 테이블에 대한 SELECT, INSERT, DELETE 권한 부여
-GRANT SELECT, INSERT, DELETE ON tbl_users TO 'test'@'%';
-
--- 'tbl_users_roles' 테이블에 대한 SELECT, INSERT, DELETE 권한 부여
-GRANT SELECT, INSERT, DELETE ON tbl_users_roles TO 'test'@'%';
