@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
       - name: mywas
-        image: grovince/test:was_v3
+        image: grovince/test:was_v5
         imagePullPolicy: Always #도커허브에 등록된 이미지를 가져옴 
         ports:
         - containerPort: 8080

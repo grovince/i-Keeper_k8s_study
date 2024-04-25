@@ -16,7 +16,7 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
         - name: mysql
-          image: grovince/test:db_v10
+          image: grovince/test:db_v12
           imagePullPolicy: Always
           args:
             - "--ignore-db-dir=lost+found"
