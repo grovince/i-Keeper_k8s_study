@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+  labels:
+    app: web-pod
+spec:
+  containers:
+  - name: nginx-test
+    image: grovince/test:v1
+    ports:
+    - containerPort: 80
