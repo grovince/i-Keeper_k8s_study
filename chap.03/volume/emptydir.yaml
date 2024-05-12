@@ -1,0 +1,34 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: emptydir-demo
+spec:
+  containers:
+  - name: container1
+    image: alpine
+    command:
+      - /bin/sh
+      - -c
+      - >
+        echo "Hello from the first container!" > /cache/message.txt;
+        sleep 3600;
+    volumeMounts:
+    - mountPath: /cache
+      name: cache-volume
+
+  - name: container2
+    image: alpine
+    command:
+      - /bin/sh
+      - -c
+      - >
+        sleep 5;
+        cat /cache/message.txt;
+        sleep 3600;
+    volumeMounts:
+    - mountPath: /cache
+      name: cache-volume
+
+  volumes:
+  - name: cache-volume
+    emptyDir: {}
