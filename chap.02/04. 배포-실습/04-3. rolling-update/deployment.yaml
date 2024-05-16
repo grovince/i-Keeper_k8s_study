@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: grovince/test:rollout-deploy-v1.1
+        image: grovince/test:rollout-v1.1
         imagePullPolicy: Always
 
 ---

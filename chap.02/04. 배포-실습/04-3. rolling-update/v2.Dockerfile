@@ -4,7 +4,7 @@ WORKDIR /usr/share/nginx/html
 
 RUN rm index.html
 
-COPY html/v2.html index.html
+COPY v2.html index.html
 
 EXPOSE 80
 
