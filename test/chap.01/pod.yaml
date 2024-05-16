@@ -7,6 +7,6 @@ metadata:
 spec:
   containers:
   - name: nginx-test
-    image: grovince/test:image-1
+    image: grovince/i-keeper:v1
     ports:
     - containerPort: 80
